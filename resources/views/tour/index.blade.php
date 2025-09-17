@@ -4,7 +4,7 @@
 
 @section('contenido')
 
-    <a href="/tours/crear"><p>nuevo tour</p></a>
+    <a href="/tour/crear"><p>nuevo tour</p></a>
 
 
     <div class="relative overflow-x-auto">

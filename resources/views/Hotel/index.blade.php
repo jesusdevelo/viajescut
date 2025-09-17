@@ -4,7 +4,7 @@
 
 @section('contenido')
 
-    <a href="/hoteles/crear"><p>nuevo hotel</p></a>
+    <a href="/Hotel/crear"><p>nuevo hotel</p></a>
 
 
 
