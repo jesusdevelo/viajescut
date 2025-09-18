@@ -53,6 +53,11 @@ Route::post('/paquetes/guardar',[PaquetesController::class,'guardar']);
 Route::get('/admin/index',[Administradorcontroller::class,'mostrartodos']);
 Route::get('/admin/crear',[Administradorcontroller::class,'crear']);
 Route::post('/admin/guardar',[Administradorcontroller::class,'guardar']);
+Route::get('/admin/{id}/editar',action: [Administradorcontroller::class,'editar']);
+Route::post('/admin/{id}/actualizar',action: [Administradorcontroller::class,'actualizar']);
+Route::get('/admin/{id}/mostrar',action: [Administradorcontroller::class,'mostrar']);
+Route::post('/admin/{id}/inhabilitar',action: [Administradorcontroller::class,'inhabilitar']);
+
 
 Route::get('/Hotel/index',[HotelController::class,'mostrartodos']);
 Route::get('/Hotel/crear',[HotelController::class,'crear']);

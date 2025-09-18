@@ -26,11 +26,19 @@
                     <th scope="col" class="px-6 py-3">
                         Telefono
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        estado
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        editar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        borrar
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($administradores as $item)
-                    
+                @foreach ($administradores as $item)      
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                        {{$item->id_admin}}
@@ -46,6 +54,13 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$item->telefono}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$item->estado}}
+                    </td>
+                    <td> <a href="/admin/{{ $item->id_admin }}/editar">editar</a>
+                    </td>
+                    <td><a href="/admin/{{ $item->id_admin }}/mostrar">inhabilitar</a>
                     </td>
                 </tr>
                 @endforeach
