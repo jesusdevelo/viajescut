@@ -27,6 +27,9 @@
                         Telefono
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        imagen
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         estado
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -54,6 +57,9 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$item->telefono}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <img src="{{$item->imagen}}" alt="{{$item->imagen}}" width="100">
                     </td>
                     <td class="px-6 py-4">
                         {{$item->estado}}

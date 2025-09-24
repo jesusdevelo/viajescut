@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Exception;
+use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Http\Request;
 
 class Administradorcontroller extends Controller
@@ -20,43 +21,64 @@ class Administradorcontroller extends Controller
     }
 
     public function guardar(Request $req ){
-       // dd($req->all());
+
+       //dd($req->all());
+       DB::beginTransaction();
        try{
-            $res=DB::table('administrador')->insert([
+            $id=DB::table('administrador')->insertGetId([
                 'nombre'=>$req->nombre,
                 'correo'=>$req->correo,
                 'telefono'=>$req->telefono,
+                'imagen'=>"imagenes/administradores/imagen_default.jpg",
                 'password'=>$req->password,
-                'estado'=>'ACTIVO'
-
+                'estado'=>'ACTIVO',
             ]);
+            if($id>0){
+                if($req->hasFile('imagen')){
+                    $imagen = $req->imagen;
+                    $extension = $imagen->extension();
+                    $nuevo_nombre = "administrador_".$id.".".$extension;
+                    $ruta = $imagen->storeAs('imagenes/administradores/', $nuevo_nombre,'public');
+                    DB::table('administrador')->where('id_admin',$id)->update([
+                        'imagen'=> asset('storage/'.$ruta)
+                    ]);
+                }
+            }
+            DB::commit();
+            return redirect('/admin/index')->with('mensaje','agregado correctamente');
         }catch(Exception $e){
+            DB::rollBack();
             return $e->getMessage();
             }
-        if($res)
-                return redirect('/admin/index')->with('mensaje','insertado correctamente');
-            else
-                return redirect()->back();
     }
     public function editar($id){
         $administrador = DB::table('administrador')->where('id_admin',$id)->first();
         return view('/admin/editar')->with('admin',$administrador);
     }
     public function actualizar(Request $req,$id ){
-       // dd($req->all());
+       //dd($req->all());
+       DB::beginTransaction();
        try{
             $res=DB::table('administrador')->where('id_admin',$id)->update([
                 'nombre'=>$req->nombre,
                 'correo'=>$req->correo,
                 'telefono'=>$req->telefono
             ]);
+            if($req->hasFile('imagen')){
+                    $imagen = $req->imagen;
+                    $extension = $imagen->extension();
+                    $nuevo_nombre = "administrador_".$id.".".$extension;
+                    $ruta = $imagen->storeAs('imagenes/administradores/', $nuevo_nombre,'public');
+                    DB::table('administrador')->where('id_admin',$id)->update([
+                        'imagen'=> asset('storage/'.$ruta)
+                    ]);
+                }
+                DB::commit();
+                return redirect('/admin/index')->with('mensaje','actualizado correctamente');
         }catch(Exception $e){
+            DB::rollBack();
             return $e->getMessage();
             }
-        if($res)
-                return redirect('/admin/index')->with('mensaje','actualizado correctamente');
-            else
-                return redirect()->back();
     }
 
     public function mostrar($id){
