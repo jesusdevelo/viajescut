@@ -4,8 +4,9 @@
 
 @section('contenido')
 
-    <a href="/admin/crear"><p>nuevo administradores</p></a>
-
+    <a href="/admin/crear" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">nuevo administrador</h5>
+    </a>
 
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
