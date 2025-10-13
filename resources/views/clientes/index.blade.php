@@ -4,8 +4,9 @@
 
 @section('contenido')
 
-    <a href="/clientes/crear"><p>nuevo cliente</p></a>
-
+     <a href="/clientes/crear" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">nuevo cliente</h5>
+    </a>
 
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -28,6 +29,15 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Historial
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        estado
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        editar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        borrar
                     </th>
                 </tr>
             </thead>
@@ -52,6 +62,13 @@
                     </td>
                     <td class="px-6 py-4">
                         {{$item->historial}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{$item->estado}}
+                    </td>
+                     <td> <a href="/clientes/{{ $item->id_cliente }}/editar">editar</a>
+                    </td>
+                    <td><a href="/clientes/{{ $item->id_cliente }}/mostrar">inhabilitar</a>
                     </td>
                 </tr>
                 @endforeach

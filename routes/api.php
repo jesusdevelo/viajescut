@@ -22,9 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/administradores', [AdminController::class, 'mostrartodos']);
 
 Route::post('/administradores', [AdminController::class, 'guardar']);
-
 Route::get('/administradores/{id}', [AdminController::class, 'mostrar']);
-
 Route::put('/administradores/{id}', [AdminController::class, 'actualizar']);
-
 Route::patch('/administradores/{id}/inhabilitar', [AdminController::class, 'inhabilitar']);

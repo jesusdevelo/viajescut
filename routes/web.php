@@ -74,3 +74,7 @@ Route::post('/tour/guardar',[TourController::class,'guardar']);
 Route::get('/clientes/index',[ClienteController::class,'mostrartodos']);
 Route::get('/clientes/crear',[ClienteController::class,'crear']);
 Route::post('/clientes/guardar',[ClienteController::class,'guardar']);
+Route::get('/clientes/{id}/editar',action: [ClienteController::class,'editar']);
+Route::post('/clientes/{id}/actualizar',action: [ClienteController::class,'actualizar']);
+Route::get('/clientes/{id}/mostrar',action: [ClienteController::class,'mostrar']);
+Route::post('/clientes/{id}/inhabilitar',action: [ClienteController::class,'inhabilitar']);

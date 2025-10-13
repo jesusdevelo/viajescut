@@ -4,7 +4,7 @@
 
 @section('contenido')
 
-    <p>esta es la vista de administradores crear</p>
+    <p>esta es la vista de administradores editar</p>
 
 
 

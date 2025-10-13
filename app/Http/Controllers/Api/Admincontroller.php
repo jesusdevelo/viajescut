@@ -149,9 +149,7 @@ class AdminController extends Controller
         ], 200);
     }
 
-    /**
-     * Inhabilitar un administrador
-     */
+
     public function inhabilitar($id): JsonResponse
     {
         try {
