@@ -153,9 +153,9 @@ class AdminController extends Controller
     public function inhabilitar($id): JsonResponse
     {
         try {
-            $res = DB::table('administrador')->where('id_admin', $id)->update([
-                'estado' => 'INACTIVO',
-            ]);
+            $res = DB::table('administrador')
+                ->where('id_admin', $id)
+                ->update(['estado' => 'INACTIVO']);
 
             if ($res) {
                 return response()->json([
@@ -164,9 +164,9 @@ class AdminController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    'status'  => 'error',
-                    'message' => 'No se pudo inhabilitar el administrador'
-                ], 400);
+                    'status'  => 'warning', 
+                    'message' => 'No se encontró el administrador o ya estaba inactivo'
+                ], 404);
             }
 
         } catch (Exception $e) {
@@ -176,4 +176,5 @@ class AdminController extends Controller
             ], 500);
         }
     }
+
 }

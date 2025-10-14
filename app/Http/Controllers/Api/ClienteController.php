@@ -114,30 +114,31 @@ class ClienteController extends Controller
     }
 
     // Inhabilitar cliente
-    public function inhabilitar( $id)
-    {
-        try {
-            $res = DB::table('cliente')
-                ->where('id_cliente', $id)
-                ->update(['estado' => 'INACTIVO']);
+    public function inhabilitar($id)
+{
+    try {
+        $res = DB::table('cliente')
+            ->where('id_cliente', $id)
+            ->update(['estado' => 'INACTIVO']);
 
-                if ($res) {
-                    return response()->json([
-                        'status' => 'success',
-                        'message' => 'Cliente inhabilitado correctamente'
-                    ], 200);
-                } else {
-                    return response()->json([
-                        'status' => 'warning',
-                        'message' => 'No se encontró el cliente o ya estaba inactivo'
-                    ], 404);
-                }
-
-        } catch (Exception $e) {
+        if ($res) {
             return response()->json([
-                'status'  => 'error',
-                'message' => $e->getMessage()
-            ], 500);
-         }
+                'status' => 'success',
+                'message' => 'Cliente inhabilitado correctamente'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'warning',
+                'message' => 'No se encontró el cliente o ya estaba inactivo'
+            ], 404);
+        }
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ], 500);
     }
+}
+
 }

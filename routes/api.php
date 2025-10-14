@@ -32,4 +32,5 @@ Route::get('/clientes', [ClienteController::class, 'mostrartodos']);
 Route::post('/clientes', [ClienteController::class, 'guardar']);
 Route::get('/clientes/{id}', [ClienteController::class, 'mostrar']);
 Route::put('/clientes/{id}', [ClienteController::class, 'actualizar']);
+
 Route::patch('/clientes/{id}/inhabilitar', [ClienteController::class, 'inhabilitar']);
